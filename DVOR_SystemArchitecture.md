@@ -2,45 +2,45 @@
 
 ```mermaid
 graph TB
-    subgraph "1️⃣ Input Layer - ชั้นการรับข้อมูล"
-        Camera[📷 กล้อง<br/>Single Camera]
-        Mirror[🪞 กระจกสะท้อน<br/>45° Mirror]
-        Light[💡 ระบบแสง<br/>Controlled Lighting]
+    subgraph "1️⃣ Input Layer"
+        Camera[📷 Camera<br/>Single Camera]
+        Mirror[🪞 Mirror<br/>Angled Position]
+        Light[💡 Lighting<br/>Controlled Lighting]
     end
     
-    subgraph "2️⃣ Image Acquisition - การเก็บภาพ"
-        Capture[📸 Image Capture Module<br/>จับภาพทั้ง 2 มุมมองในเฟรมเดียว]
-        RawImage[(🖼️ Raw Image<br/>ภาพดิบ RGB)]
+    subgraph "2️⃣ Image Acquisition"
+        Capture[📸 Image Capture Module<br/>Captures both views in single frame]
+        RawImage[(🖼️ Raw Image<br/>RGB Image)]
     end
     
-    subgraph "3️⃣ Image Processing - การประมวลผลภาพ"
-        Preprocessing[🔧 Image Preprocessing<br/>- ปรับแสง/คอนทราสต์<br/>- ลด Noise<br/>- แยก Top/Side View]
-        Segmentation[✂️ Object Segmentation<br/>- แยกส้มจากพื้นหลัง<br/>- ตรวจจับ Marker<br/>- Binary Masking]
-        Calibration[📏 Scale Calibration<br/>- ตรวจจับ Marker<br/>- แปลง Pixel → mm/cm]
+    subgraph "3️⃣ Image Processing"
+        Preprocessing[🔧 Image Preprocessing<br/>- Adjust brightness/contrast<br/>- Noise reduction<br/>- Separate Top/Side View]
+        Segmentation[✂️ Object Segmentation<br/>- Separate orange from background<br/>- Detect Marker<br/>- Binary Masking]
+        Calibration[📏 Scale Calibration<br/>- Detect Marker<br/>- Convert Pixel → mm/cm]
     end
     
-    subgraph "4️⃣ Feature Extraction - การสกัดคุณลักษณะ"
-        GeometricFE[📐 Geometric Feature<br/>Extraction<br/>- เส้นผ่านศูนย์กลาง<br/>- ความสูง<br/>- พื้นที่หน้าตัด<br/>- ความกลม]
-        FeatureVector[(📊 Feature Vector<br/>ชุดข้อมูลคุณลักษณะ)]
+    subgraph "4️⃣ Feature Extraction"
+        GeometricFE[📐 Geometric Feature<br/>Extraction<br/>- Diameter<br/>- Height<br/>- Cross-sectional Area<br/>- Roundness]
+        FeatureVector[(📊 Feature Vector<br/>Feature Data Set)]
     end
     
-    subgraph "5️⃣ AI/ML Module - โมเดลปัญญาประดิษฐ์"
+    subgraph "5️⃣ AI/ML Module"
         MLModel[🤖 Machine Learning Model<br/>- Training in Progress<br/>- Trained Model]
-        Prediction[🎯 Volume Prediction<br/>ทำนายปริมาตร]
+        Prediction[🎯 Volume Prediction<br/>Predict Volume]
     end
     
-    subgraph "6️⃣ Output Layer - ชั้นการแสดงผล"
-        Display[🖥️ Display Results<br/>- ค่าปริมาตร cm³<br/>- ภาพที่ประมวลผล<br/>- คุณลักษณะต่างๆ]
-        Storage[(💾 Data Storage<br/>- บันทึกภาพ<br/>- บันทึกผลลัพธ์<br/>- Log ข้อมูล)]
+    subgraph "6️⃣ Output Layer"
+        Display[🖥️ Display Results<br/>- Volume value cm³<br/>- Processed images<br/>- All features]
+        Storage[(💾 Data Storage<br/>- Save images<br/>- Save results<br/>- Log data)]
     end
     
-    subgraph "7️⃣ User Interface - อินเทอร์เฟซผู้ใช้"
-        GUI[🖱️ GUI Application<br/>- ปุ่มถ่ายภาพ<br/>- แสดงผล Real-time<br/>- บันทึก/Export]
+    subgraph "7️⃣ User Interface"
+        GUI[🖱️ GUI Application<br/>- Capture button<br/>- Real-time display<br/>- Save/Export]
     end
     
     %% Connections
-    Camera -->|ภาพด้านบนของส้ม| Capture
-    Mirror -->|ภาพสะท้อนด้านข้าง| Camera
+    Camera -->|Direct top view of orange| Capture
+    Mirror -->|Reflected side view| Camera
     Light --> Camera
     
     Capture --> RawImage
@@ -58,9 +58,9 @@ graph TB
     Prediction --> Display
     Display --> Storage
     
-    GUI -.->|ควบคุม| Capture
-    Display -.->|แสดงใน| GUI
-    Storage -.->|เรียกดู| GUI
+    GUI -.->|Control| Capture
+    Display -.->|Display in| GUI
+    Storage -.->|Retrieve| GUI
     
     %% Styling
     style Camera fill:#4fc3f7
@@ -73,28 +73,28 @@ graph TB
 
 ---
 
-## 📋 รายละเอียดแต่ละ Layer
+## 📋 Layer Details
 
-### 1️⃣ **Input Layer - ชั้นการรับข้อมูล**
+### 1️⃣ **Input Layer**
 
 | Component | Function | Technology |
 |-----------|----------|------------|
-| **Camera** | จับภาพผลส้ม ได้ทั้ง Top View (ตรง) และ Side View (สะท้อน) ในเฟรมเดียว | RGB Camera (≥5MP) |
-| **Mirror** | สะท้อนภาพด้านข้างของส้ม วางเอียงในมุมที่เหมาะสม | กระจกเรียบคุณภาพสูง |
-| **Lighting** | ให้แสงสว่างสม่ำเสมอ | LED White Light |
+| **Camera** | Captures orange in both Top View (direct) and Side View (reflected) in single frame | RGB Camera (≥5MP) |
+| **Mirror** | Reflects side view of orange, positioned at appropriate angle | High-quality smooth mirror |
+| **Lighting** | Provides consistent illumination | LED White Light |
 
 ---
 
-### 2️⃣ **Image Acquisition - การเก็บภาพ**
+### 2️⃣ **Image Acquisition**
 
 - **Image Capture Module**
-  - จับภาพในเฟรมเดียว มีทั้ง 2 มุมมอง
-  - บันทึกเป็นไฟล์ RGB (JPG/PNG)
-  - ความละเอียดสูงเพื่อความแม่นยำ
+  - Captures 2 views in a single frame
+  - Saves as RGB file (JPG/PNG)
+  - High resolution for accuracy
 
 ---
 
-### 3️⃣ **Image Processing - การประมวลผลภาพ**
+### 3️⃣ **Image Processing**
 
 #### a) **Image Preprocessing**
 ```
@@ -103,7 +103,7 @@ Process:
   - Color correction
   - Noise reduction (Gaussian Blur, Median Filter)
   - Contrast enhancement
-  - แยกภาพ Top View และ Side View จากเฟรมเดียว
+  - Separate Top View and Side View from single frame
 Output: Processed Images (2 views)
 ```
 
@@ -123,40 +123,40 @@ Output: Segmented orange object (binary mask)
 ```
 Input: Segmented Image + Marker
 Process:
-  - ตรวจจับ Marker (Known size reference object)
-  - คำนวณอัตราส่วน: Pixel/mm
-  - ใช้ปรับเทียบทุกการวัด
+  - Detect Marker (Known size reference object)
+  - Calculate ratio: Pixel/mm
+  - Use for all measurements
 Output: Calibration ratio (px/mm)
 ```
 
 ---
 
-### 4️⃣ **Feature Extraction - การสกัดคุณลักษณะ**
+### 4️⃣ **Feature Extraction**
 
 #### Geometric Features:
-1. **เส้นผ่านศูนย์กลาง (Diameter)**
-   - วัดจาก Top View (D_top)
-   - วัดจาก Side View (D_side)
+1. **Diameter**
+   - Measured from Top View (D_top)
+   - Measured from Side View (D_side)
 
-2. **ความสูง (Height)**
-   - วัดจาก Side View
+2. **Height**
+   - Measured from Side View
 
-3. **พื้นที่หน้าตัด (Cross-sectional Area)**
-   - คำนวณจาก Top View
+3. **Cross-sectional Area**
+   - Calculated from Top View
    - A = π × (D_top/2)²
 
-4. **ความกลม (Roundness/Circularity)**
+4. **Roundness/Circularity**
    - R = 4π × Area / Perimeter²
-   - ใช้ประเมินความไม่สมมาตร
+   - Used to assess asymmetry
 
-5. **อัตราส่วน (Aspect Ratio)**
+5. **Aspect Ratio**
    - Height / Diameter
 
 **Output:** Feature Vector = [D_top, D_side, Height, Area, Roundness, Aspect_Ratio, ...]
 
 ---
 
-### 5️⃣ **AI/ML Module - โมเดลปัญญาประดิษฐ์**
+### 5️⃣ **AI/ML Module**
 
 #### Machine Learning Pipeline:
 
@@ -172,41 +172,41 @@ Output: Predicted Volume (cm³)
 
 #### Training Process:
 ```
-1. เก็บข้อมูล: ภาพส้ม + วัดปริมาตรจริง (Water displacement)
-2. สกัด Features จากภาพ
-3. แบ่งข้อมูล: Train/Validation/Test set
-4. ฝึก Model หลายแบบ
-5. เลือก Model ที่ดีที่สุด
+1. Collect data: Orange images + actual volume measurement (Water displacement)
+2. Extract Features from images
+3. Split data: Train/Validation/Test set
+4. Train multiple Models
+5. Select best Model
 6. Optimize hyperparameters
-7. Deploy โมเดล
+7. Deploy model
 ```
 
 ---
 
-### 6️⃣ **Output Layer - ชั้นการแสดงผล**
+### 6️⃣ **Output Layer**
 
 #### Display Results:
-- **ค่าปริมาตร:** แสดงเป็น cm³ หรือ ml
-- **ภาพที่ประมวลผล:** แสดงภาพทั้ง 2 มุมมองพร้อม annotation
-- **คุณลักษณะ:** แสดงข้อมูล diameter, height, area
-- **ความมั่นใจ:** แสดง confidence score (ถ้ามี)
+- **Volume Value:** Displayed in cm³ or ml
+- **Processed Images:** Shows both views with annotations
+- **Features:** Display diameter, height, area data
+- **Confidence:** Display confidence score (if available)
 
 #### Data Storage:
-- บันทึกภาพต้นฉบับ
-- บันทึกผลลัพธ์การวัด (CSV/Database)
-- Log timestamp และข้อมูลอื่นๆ
-- ใช้สำหรับ retrain model หรือ analysis ภายหลัง
+- Save original images
+- Save measurement results (CSV/Database)
+- Log timestamp and other metadata
+- Use for retraining model or later analysis
 
 ---
 
-### 7️⃣ **User Interface - อินเทอร์เฟซผู้ใช้**
+### 7️⃣ **User Interface**
 
 #### GUI Features:
-- **Preview Window:** แสดงภาพจากกล้องแบบ real-time
-- **Capture Button:** ปุ่มถ่ายภาพและเริ่มประมวลผล
-- **Results Panel:** แสดงผลลัพธ์การวัด
-- **Save/Export:** บันทึกข้อมูลเป็นไฟล์
-- **Settings:** ปรับแต่งพารามิเตอร์
+- **Preview Window:** Shows real-time camera feed
+- **Capture Button:** Button to photograph and start processing
+- **Results Panel:** Display measurement results
+- **Save/Export:** Save data to file
+- **Settings:** Adjust parameters
 
 ---
 
@@ -226,10 +226,10 @@ Output: Predicted Volume (cm³)
 ## 📊 Data Flow Summary
 
 ```
-🍊 ส้ม → 📷 กล้อง+🪞กระจก → 🖼️ ภาพดิบ (2 views) → 
-🔧 ประมวลผลภาพ → ✂️ แยกวัตถุ → 📏 ปรับสเกล → 
-📐 สกัดคุณลักษณะ → 🤖 โมเดล AI → 🎯 ปริมาตร → 
-🖥️ แสดงผล → 💾 บันทึกข้อมูล
+🍊 Orange → 📷 Camera+🪞Mirror → 🖼️ Raw Image (2 views) → 
+🔧 Image Processing → ✂️ Segmentation → 📏 Scale Calibration → 
+📐 Feature Extraction → 🤖 AI Model → 🎯 Volume → 
+🖥️ Display → 💾 Save Data
 ```
 
 ---
@@ -237,10 +237,10 @@ Output: Predicted Volume (cm³)
 ## ⚙️ System Requirements
 
 ### Hardware:
-- ✅ กล้อง RGB (5MP ขึ้นไป)
-- ✅ กระจกสะท้อนเรียบ
-- ✅ ระบบไฟส่องสว่าง LED
-- ✅ คอมพิวเตอร์ (CPU: i5 ขึ้นไป, RAM: 8GB ขึ้นไป)
+- ✅ RGB Camera (5MP or higher)
+- ✅ Smooth mirror
+- ✅ LED lighting system
+- ✅ Computer (CPU: i5 or better, RAM: 8GB or more)
 
 ### Software:
 - ✅ Python 3.8+
@@ -251,10 +251,10 @@ Output: Predicted Volume (cm³)
 
 ---
 
-## 🎯 ข้อดีของสถาปัตยกรรมนี้
+## 🎯 Architecture Advantages
 
-✅ **Modular Design:** แต่ละโมดูลแยกกันชัดเจน พัฒนาและแก้ไขง่าย  
-✅ **Scalable:** สามารถเพิ่ม features หรือปรับปรุง model ได้  
-✅ **Cost-effective:** ใช้กล้องเดียว ลดต้นทุน  
-✅ **Automated:** ประมวลผลอัตโนมัติหลังถ่ายภาพ  
-✅ **Non-destructive:** ไม่ทำลายตัวอย่างส้ม
+✅ **Modular Design:** Each module is clearly separated, easy to develop and modify  
+✅ **Scalable:** Can add features or improve model easily  
+✅ **Cost-effective:** Uses single camera, reducing costs  
+✅ **Automated:** Processes automatically after image capture  
+✅ **Non-destructive:** Does not damage the orange sample

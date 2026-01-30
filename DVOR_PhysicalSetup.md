@@ -2,20 +2,20 @@
 
 ```mermaid
 graph TB
-    subgraph "การจัดวางฮาร์ดแวร์ DVOR"
-        Camera[📷 กล้อง Camera<br/>ติดตั้งด้านบน<br/>มองลงมาแนวดิ่ง]
-        Mirror[🪞 กระจกสะท้อน<br/>Mirror<br/>วางเอียงด้านข้าง]
-        Platform[📦 แท่นวางส้ม<br/>Platform<br/>สีพื้นหลังคงที่]
-        Marker[📏 Marker<br/>วัตถุอ้างอิงขนาด]
-        Light[💡 ไฟส่องสว่าง<br/>Lighting<br/>แสงคงที่]
-        Orange[🍊 ผลส้ม<br/>Orange]
+    subgraph "DVOR Hardware Layout"
+        Camera[📷 Camera<br/>Mounted Above<br/>Looking Downward Vertically]
+        Mirror[🪞 Mirror<br/>Positioned at Angle<br/>On the Side]
+        Platform[📦 Platform<br/>Solid Background Color]
+        Marker[📏 Marker<br/>Size Reference Object]
+        Light[💡 Lighting<br/>Constant Illumination]
+        Orange[🍊 Orange]
         
-        Camera -->|ถ่ายภาพด้านบน| Orange
-        Camera -->|ถ่ายภาพสะท้อน| Mirror
-        Mirror -->|สะท้อนด้านข้าง| Orange
-        Orange -->|วางบน| Platform
-        Marker -->|อยู่ใกล้| Orange
-        Light -->|ส่องแสง| Orange
+        Camera -->|Direct Top View| Orange
+        Camera -->|Reflected View| Mirror
+        Mirror -->|Side Reflection| Orange
+        Orange -->|Placed On| Platform
+        Marker -->|Adjacent To| Orange
+        Light -->|Illuminates| Orange
     end
     
     style Camera fill:#4fc3f7
@@ -26,74 +26,74 @@ graph TB
     style Light fill:#fff176
 ```
 
-## 📐 รายละเอียดการติดตั้ง
+## 📐 Installation Details
 
-### 1. **กล้อง (Camera)**
-- **ตำแหน่ง:** ติดตั้งด้านบนตรงกลาง มองลงมาแนวดิ่ง
-- **ระยะห่าง:** ปรับระยะให้ครอบคลุมทั้งผลส้มและกระจกสะท้อนในเฟรมเดียว
-- **คุณสมบัติ:** กล้อง RGB ความละเอียดสูง (แนะนำ ≥ 5MP)
-- **ฟังก์ชัน:** จับภาพ 2 มุมมองในเฟรมเดียว
-  - Top View: มุมมองด้านบนของผลส้มโดยตรง
-  - Side View: มุมมองด้านข้างผ่านกระจกสะท้อน
+### 1. **Camera**
+- **Position:** Mounted centrally above, looking downward vertically
+- **Distance:** Adjusted to capture both the orange and mirror reflection in a single frame
+- **Specification:** High-resolution RGB camera (recommended ≥ 5MP)
+- **Function:** Captures 2 views in one frame
+  - Top View: Direct overhead view of the orange
+  - Side View: Side view via mirror reflection
 
-### 2. **กระจกสะท้อน (Mirror)**
-- **มุมการวาง:** วางเอียงในมุมที่เหมาะสม เพื่อสะท้อนภาพด้านข้างของผลส้ม
-- **ขนาด:** เพียงพอที่จะสะท้อนผลส้มทั้งหมดด้านข้าง
-- **ตำแหน่ง:** วางด้านข้างของแท่นวางส้ม ห่างจากผลส้มในระยะที่เหมาะสม
-- **วัสดุ:** กระจกเรียบคุณภาพสูง ไม่บิดเบือนภาพ
-- **การปรับแต่ง:** สามารถปรับมุมเพื่อให้ได้ภาพสะท้อนที่ชัดเจนที่สุด
-- **วัตถุประสงค์:** ช่วยให้ได้มุมมองด้านข้างโดยไม่ต้องใช้กล้องที่ 2 ประหยัดต้นทุน
+### 2. **Mirror**
+- **Angle:** Positioned at an appropriate angle for optimal side view reflection
+- **Size:** Large enough to reflect the entire side view of the orange
+- **Position:** Placed beside the platform, at a suitable distance from the orange
+- **Material:** Smooth, high-quality mirror that doesn't distort the image
+- **Adjustment:** Angle can be adjusted to achieve the clearest reflection
+- **Purpose:** Enables side view capture without requiring a second camera, reducing hardware costs
 
-### 3. **แท่นวางส้ม (Platform)**
-- **สี:** พื้นหลังสีทึบ (แนะนำสีตัดกับส้ม เช่น สีขาว หรือสีเทา)
-- **พื้นผิว:** เรียบ ไม่สะท้อนแสง (matte finish)
-- **ขนาด:** เพียงพอสำหรับวางส้มขนาดต่างๆ
-- **วัตถุประสงค์:** ช่วยให้แยกวัตถุ (Segmentation) ได้ง่ายขึ้น
+### 3. **Platform**
+- **Color:** Solid background color (recommended: white or gray, contrasting with orange)
+- **Surface:** Smooth, non-reflective (matte finish)
+- **Size:** Adequate for oranges of various sizes
+- **Purpose:** Facilitates easier object segmentation
 
-### 4. **Marker (วัตถุอ้างอิงขนาด)**
-- **รูปแบบ:** วัตถุที่มีขนาดทราบแน่นอน เช่น บล็อกสี่เหลี่ยมขนาด 2×2 cm
-- **ตำแหน่ง:** วางใกล้ผลส้มในมุมมองกล้อง
-- **สี:** แตกต่างจากผลส้มและพื้นหลังเพื่อให้ตรวจจับได้ง่าย
-- **วัตถุประสงค์:** ใช้ปรับเทียบสเกล (Calibration) แปลงจากพิกเซลเป็นหน่วยจริง (mm/cm)
+### 4. **Marker (Size Reference Object)**
+- **Format:** Object with known precise dimensions, e.g., 2×2 cm square block
+- **Position:** Placed near the orange within the camera's field of view
+- **Color:** Different from both orange and background for easy detection
+- **Purpose:** Used for scale calibration - converting pixels to real units (mm/cm)
 
-### 5. **แสงสว่าง (Lighting)**
-- **ประเภท:** แสงขาว (White LED) หรือแสงธรรมชาติที่สม่ำเสมอ
-- **การควบคุม:** แสงคงที่ ไม่กระพริบ หลีกเลี่ยงเงามากเกินไป
-- **ตำแหน่ง:** ส่องจากด้านบนหรือด้านข้าง หลีกเลี่ยงการสะท้อนกลับ (glare)
-- **วัตถุประสงค์:** ให้ได้ภาพที่ชัดเจน สีสันสม่ำเสมอ
+### 5. **Lighting**
+- **Type:** White LED or consistent natural lighting
+- **Control:** Steady, non-flickering light avoiding excessive shadows
+- **Position:** Illuminating from above or side, avoiding glare
+- **Purpose:** Produces clear images with consistent coloration
 
 ---
 
-## 🔄 หลักการทำงานและมุมมองที่ได้
+## 🔄 Capture Mechanism and Resulting Views
 
-### การจับภาพ (Image Capture Mechanism):
+### Image Capture Mechanism:
 ```
-         📷 กล้อง (ติดตั้งด้านบน)
+         📷 Camera (Mounted Above)
               │
-              │ เส้นทางแสง (Optical Path)
-              ├─────────────┐
-              │             │
-              ↓             ↓
+              │ Optical Path
+              ├───────────┐
+              │           │
+              ▼           ▼
      🍊 Top View    🪞 → 🍊 Side View
-     (ภาพตรง)       (ภาพสะท้อน)
+     (Direct)       (Reflected)
 ```
 
-### ผลลัพธ์ในเฟรมเดียว:
+### Result in Single Frame:
 ```
-┌─────────────────────────────────────┐
-│         📷 กล้อง Camera             │
-│      (มองลงมาแนวดิ่ง)              │
-└────────────┬────────────────────────┘
+┌────────────────────────────────────────────┐
+│         📷 Camera                          │
+│      (Looking Downward)                    │
+└────────────┬───────────────────────────────┘
              │
-             │ จับภาพพร้อมกัน
+             │ Captures Simultaneously
              ▼
 ┌────────────────────────────────────────────┐
-│  เฟรมเดียว (Single Frame)                │
+│  Single Frame                              │
 │                                            │
 │  ┌──────────────┐   ┌──────────────┐    │
 │  │              │   │              │    │
 │  │  🍊 Top View │   │ 🍊 Side View │    │
-│  │   (ด้านบน)   │   │  (สะท้อน)   │    │
+│  │   (Direct)   │   │ (Reflected)  │    │
 │  │              │   │              │    │
 │  └──────────────┘   └──────────────┘    │
 │       + 📏              + 📏             │
@@ -103,28 +103,30 @@ graph TB
 
 ---
 
-## 🎯 ข้อดีของการออกแบบนี้
+## 🎯 Advantages of This Design
 
-✅ **ประหยัดต้นทุน:** ใช้กล้องเพียงตัวเดียวแทนการใช้ 2 ตัว  
-✅ **ไม่ซับซ้อน:** ไม่ต้องซิงค์การถ่ายภาพหลายกล้อง  
-✅ **ข้อมูลครบถ้วน:** ได้ทั้งมุมมองด้านบนและด้านข้างในเฟรมเดียว  
-✅ **ติดตั้งง่าย:** ใช้อุปกรณ์ที่หาได้ง่าย  
-✅ **ความแม่นยำ:** สามารถปรับเทียบสเกลด้วย Marker
+✅ **Cost-Effective:** Uses only one camera instead of two  
+✅ **Simple:** No need to synchronize multiple cameras  
+✅ **Complete Data:** Captures both top and side views in a single frame  
+✅ **Easy Installation:** Uses readily available components  
+✅ **Accurate:** Scale calibration via Marker enables precise measurements
 
 ---
 
-## 📌 ข้อควรระวังและคำแนะนำ
+## 📌 Precautions and Tips
 
-⚠️ **กระจกต้องสะอาด:** หลีกเลี่ยงรอยเปื้อน รอยนิ้วมือ หรือฝุ่นที่อาจทำให้ภาพสะท้อนเสียหาย  
-⚠️ **มุมของกระจก:** ต้องปรับมุมให้เหมาะสมเพื่อให้ภาพสะท้อนด้านข้างชัดเจน ไม่บิดเบือน และอยู่ในกรอบภาพ  
-⚠️ **แสงสะท้อน (Glare):** ต้องจัดการแสงไม่ให้เกิดแสงสะท้อนจากพื้นผิวกระจกมากเกินไป อาจใช้กระจก anti-glare  
-⚠️ **ตำแหน่งส้ม:** ต้องวางในตำแหน่งที่กำหนดไว้อย่างสม่ำเสมอ เพื่อให้ได้ภาพที่มีคุณภาพเท่ากัน  
-⚠️ **ระยะห่าง:** ระยะระหว่างกล้อง กระจก และผลส้มต้องคงที่ เพื่อความสม่ำเสมอของข้อมูล  
-⚠️ **การสั่นสะเทือน:** หลีกเลี่ยงการสั่นของกล้องหรือกระจกขณะถ่ายภาพ อาจใช้ขาตั้งที่มั่นคง
+### ⚠️ Precautions:
 
-## 💡 เคล็ดลับการติดตั้ง
+⚠️ **Mirror Cleanliness:** Avoid stains, fingerprints, or dust that may damage the image quality  
+⚠️ **Mirror Angle:** Must be properly adjusted to achieve the clearest, undistorted side view within the frame  
+⚠️ **Glare:** Manage lighting to avoid excessive reflection from the mirror surface; consider anti-glare coating  
+⚠️ **Orange Position:** Must be placed consistently in the designated location for uniform image quality  
+⚠️ **Distance:** Maintain consistent distances between camera, mirror, and orange for data uniformity  
+⚠️ **Vibration:** Avoid camera or mirror movement during image capture; use stable mounting
 
-✅ **ทดสอบมุมกระจก:** ถ่ายภาพทดลองหลายมุม เพื่อหามุมที่ให้ภาพสะท้อนชัดที่สุด  
-✅ **ใช้ Marker อ้างอิง:** วาง Marker ทั้งในภาพตรงและภาพสะท้อนเพื่อช่วยในการ calibration  
-✅ **ตรวจสอบแสง:** ทดสอบภายใต้แสงต่างๆ เพื่อหาค่าที่เหมาะสม  
-✅ **บันทึกการตั้งค่า:** จดบันทึกตำแหน่งและมุมที่ใช้ได้ผลดี เพื่อใช้ซ้ำได้
+### 💡 Installation Tips:
+
+✅ **Test Mirror Angles:** Try multiple angles to find the one producing the clearest side view  
+✅ **Use Marker Reference:** Place marker in both direct and reflected views to aid calibration  
+✅ **Check Lighting:** Test under various lighting conditions to find optimal settings  
+✅ **Document Settings:** Record successful positions and angles for reproducibility

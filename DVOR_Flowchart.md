@@ -2,62 +2,62 @@
 
 ```mermaid
 flowchart TD
-    Start([🚀 เริ่มต้นระบบ DVOR])
+    Start([🚀 Start DVOR System])
     
-    Init[🔧 Initialize System<br/>- เปิดโปรแกรม<br/>- เชื่อมต่อกล้อง<br/>- โหลด ML Model]
+    Init[🔧 Initialize System<br/>- Launch program<br/>- Connect camera<br/>- Load ML Model]
     
-    CheckCamera{📷 กล้องพร้อม?}
-    ErrorCamera[❌ แสดง Error<br/>กล้องไม่พร้อม]
+    CheckCamera{📷 Camera<br/>Ready?}
+    ErrorCamera[❌ Display Error<br/>Camera not ready]
     
-    Ready[✅ ระบบพร้อมใช้งาน<br/>รอผู้ใช้วางส้ม]
+    Ready[✅ System Ready<br/>Waiting for orange placement]
     
-    PlaceOrange[🍊 ผู้ใช้วางผลส้ม<br/>บนแท่นถ่ายภาพ]
+    PlaceOrange[🍊 User Places Orange<br/>on capture platform]
     
-    WaitCapture{🖱️ ผู้ใช้กด<br/>ถ่ายภาพ?}
+    WaitCapture{🖱️ User Presses<br/>Capture?}
     
-    CaptureImage[📸 Capture Image<br/>ถ่ายภาพ 2 มุมมอง<br/>ในเฟรมเดียว]
+    CaptureImage[📸 Capture Image<br/>Captures 2 views<br/>in single frame]
     
-    SaveRaw[💾 บันทึกภาพดิบ<br/>Raw Image]
+    SaveRaw[💾 Save Raw Image<br/>Raw Image]
     
     %% Image Processing
-    Preprocess[🔧 Image Preprocessing<br/>- ปรับแสง/คอนทราสต์<br/>- ลด Noise<br/>- แยก Top/Side View]
+    Preprocess[🔧 Image Preprocessing<br/>- Adjust brightness/contrast<br/>- Noise reduction<br/>- Separate Top/Side View]
     
-    Segment[✂️ Object Segmentation<br/>- แยกส้มจากพื้นหลัง<br/>- Background Subtraction<br/>- Binary Masking]
+    Segment[✂️ Object Segmentation<br/>- Separate orange from background<br/>- Background Subtraction<br/>- Binary Masking]
     
-    CheckSegment{✅ แยกวัตถุ<br/>สำเร็จ?}
-    ErrorSegment[❌ Error<br/>ไม่พบวัตถุ<br/>หรือภาพไม่ชัด]
+    CheckSegment{✅ Segmentation<br/>Successful?}
+    ErrorSegment[❌ Error<br/>Object not found<br/>or image unclear]
     
-    DetectMarker[📏 Detect Marker<br/>ตรวจจับ Reference Object]
+    DetectMarker[📏 Detect Marker<br/>Detect Reference Object]
     
-    CheckMarker{✅ พบ Marker?}
-    UseDefault[⚠️ ใช้ค่า Default<br/>Calibration]
+    CheckMarker{✅ Marker<br/>Found?}
+    UseDefault[⚠️ Use Default<br/>Calibration]
     
-    Calibrate[📐 Scale Calibration<br/>คำนวณ Pixel/mm ratio]
+    Calibrate[📐 Scale Calibration<br/>Calculate Pixel/mm ratio]
     
-    ExtractFeatures[📊 Feature Extraction<br/>สกัดคุณลักษณะ:<br/>- Diameter (Top/Side)<br/>- Height<br/>- Area<br/>- Roundness<br/>- Aspect Ratio]
+    ExtractFeatures[📊 Feature Extraction<br/>Extract features:<br/>- Diameter (Top/Side)<br/>- Height<br/>- Area<br/>- Roundness<br/>- Aspect Ratio]
     
-    CreateVector[📈 Create Feature Vector<br/>สร้างชุดข้อมูล Input<br/>สำหรับ ML Model]
+    CreateVector[📈 Create Feature Vector<br/>Create Input data<br/>for ML Model]
     
     %% ML Prediction
-    LoadModel[🤖 Load ML Model<br/>โหลดโมเดลที่ฝึกแล้ว]
+    LoadModel[🤖 Load ML Model<br/>Load trained model]
     
-    Predict[🎯 Volume Prediction<br/>ทำนายปริมาตรด้วย<br/>ML Model]
+    Predict[🎯 Volume Prediction<br/>Predict volume using<br/>ML Model]
     
-    PostProcess[📝 Post Processing<br/>- ตรวจสอบค่าที่สมเหตุสมผล<br/>- ปัดเศษ<br/>- แปลงหน่วย]
+    PostProcess[📝 Post Processing<br/>- Validate reasonable values<br/>- Round numbers<br/>- Convert units]
     
-    CheckValid{✅ ค่าปริมาตร<br/>สมเหตุสมผล?}
-    ErrorPrediction[❌ Warning<br/>ค่าผิดปกติ<br/>ตรวจสอบส้มหรือภาพ]
+    CheckValid{✅ Volume value<br/>Reasonable?}
+    ErrorPrediction[❌ Warning<br/>Abnormal value<br/>Check orange or image]
     
     %% Output
-    DisplayResults[🖥️ Display Results<br/>แสดงผล:<br/>- ปริมาตร V cm³<br/>- ภาพที่ประมวลผล<br/>- คุณลักษณะทั้งหมด<br/>- Confidence Score]
+    DisplayResults[🖥️ Display Results<br/>Display:<br/>- Volume V cm³<br/>- Processed images<br/>- All features<br/>- Confidence Score]
     
-    SaveOption{💾 บันทึก<br/>ผลลัพธ์?}
+    SaveOption{💾 Save<br/>Results?}
     
-    SaveData[💿 Save Data<br/>- บันทึกภาพ<br/>- บันทึกผลลัพธ์ CSV<br/>- Timestamp<br/>- Log ข้อมูล]
+    SaveData[💿 Save Data<br/>- Save images<br/>- Save results CSV<br/>- Timestamp<br/>- Log data]
     
-    Continue{🔄 วัดส้ม<br/>ลูกต่อไป?}
+    Continue{🔄 Measure<br/>Next Orange?}
     
-    End([🏁 จบการทำงาน])
+    End([🏁 End])
     
     %% Connections
     Start --> Init
@@ -77,7 +77,7 @@ flowchart TD
     
     Segment --> CheckSegment
     CheckSegment -->|No| ErrorSegment
-    ErrorSegment -->|ลองใหม่| WaitCapture
+    ErrorSegment -->|Retry| WaitCapture
     CheckSegment -->|Yes| DetectMarker
     
     DetectMarker --> CheckMarker
@@ -121,128 +121,128 @@ flowchart TD
 
 ---
 
-## 📖 คำอธิบาย Flowchart
+## 📖 Flowchart Explanation
 
-### 🟢 **Phase 1: Initialization (การเริ่มต้นระบบ)**
+### 🟢 **Phase 1: Initialization**
 
-1. **เริ่มต้นระบบ**
-   - เปิดโปรแกรม DVOR
-   - เชื่อมต่อกล้อง
-   - โหลด Machine Learning Model ที่ฝึกไว้แล้ว
-   - ตรวจสอบอุปกรณ์
+1. **Start System**
+   - Launch DVOR program
+   - Connect camera
+   - Load pre-trained Machine Learning Model
+   - Check equipment
 
-2. **ตรวจสอบกล้อง**
-   - ✅ หากพร้อม → ไปต่อ
-   - ❌ หากไม่พร้อม → แสดง Error แล้วจบ
-
----
-
-### 🔵 **Phase 2: Image Capture (การถ่ายภาพ)**
-
-3. **ระบบพร้อมใช้งาน**
-   - แสดงหน้า GUI พร้อมรอผู้ใช้
-
-4. **วางผลส้ม**
-   - ผู้ใช้วางส้มบนแท่นถ่ายภาพ
-   - ปรับตำแหน่งให้อยู่ในมุมมองกล้อง
-
-5. **รอคำสั่งถ่ายภาพ**
-   - ผู้ใช้กดปุ่ม "Capture"
-
-6. **ถ่ายภาพ**
-   - จับภาพจากกล้องตัวเดียว
-   - ได้ภาพ 2 มุมมองพร้อมกันในเฟรมเดียว:
-     • Top View: ภาพด้านบนของผลส้มโดยตรง
-     • Side View: ภาพด้านข้างที่สะท้อนจากกระจก
-   - บันทึกภาพดิบไว้ (Raw Image)
+2. **Check Camera**
+   - ✅ If ready → Continue
+   - ❌ If not ready → Display Error and end
 
 ---
 
-### 🟡 **Phase 3: Image Processing (การประมวลผลภาพ)**
+### 🔵 **Phase 2: Image Capture**
+
+3. **System Ready**
+   - Display GUI interface, waiting for user
+
+4. **Place Orange**
+   - User places orange on capture platform
+   - Adjust position to be within camera view
+
+5. **Wait for Capture Command**
+   - User presses "Capture" button
+
+6. **Capture Image**
+   - Capture from camera in a single frame
+   - Gets 2 views simultaneously:
+     • Top View: Direct overhead view of orange
+     • Side View: Side reflection from mirror
+   - Save raw image (Raw Image)
+
+---
+
+### 🟡 **Phase 3: Image Processing**
 
 7. **Preprocessing**
-   - ปรับแสง ความคมชัด
-   - ลด Noise
-   - แยกภาพ Top View และ Side View
+   - Adjust brightness, sharpness
+   - Reduce noise
+   - Separate Top View and Side View images
 
 8. **Segmentation**
-   - แยกวัตถุ (ส้ม) จากพื้นหลัง
-   - ใช้ Color-based segmentation
-   - สร้าง Binary mask
+   - Separate object (orange) from background
+   - Use Color-based segmentation
+   - Create Binary mask
 
-9. **ตรวจสอบการแยกวัตถุ**
-   - ✅ สำเร็จ → ไปต่อ
-   - ❌ ไม่สำเร็จ → แสดง Error ให้ถ่ายใหม่
+9. **Check Segmentation**
+   - ✅ Success → Continue
+   - ❌ Failure → Display Error, retry capture
 
-10. **ตรวจจับ Marker**
-    - หา Reference object เพื่อปรับเทียบสเกล
-    - ✅ พบ → ใช้คำนวณ Pixel/mm
-    - ❌ ไม่พบ → ใช้ค่า Default
+10. **Detect Marker**
+    - Find Reference object for scale calibration
+    - ✅ Found → Use to calculate Pixel/mm
+    - ❌ Not found → Use Default value
 
 11. **Scale Calibration**
-    - แปลงค่า Pixel → mm/cm
+    - Convert Pixel values → mm/cm
 
 ---
 
-### 🟣 **Phase 4: Feature Extraction (การสกัดคุณลักษณะ)**
+### 🟣 **Phase 4: Feature Extraction**
 
-12. **สกัดคุณลักษณะ**
-    - วัดเส้นผ่านศูนย์กลาง (Diameter)
-    - วัดความสูง (Height)
-    - คำนวณพื้นที่ (Area)
-    - คำนวณความกลม (Roundness)
-    - คำนวณ Aspect Ratio
+12. **Extract Features**
+    - Measure Diameter
+    - Measure Height
+    - Calculate Area
+    - Calculate Roundness
+    - Calculate Aspect Ratio
 
-13. **สร้าง Feature Vector**
-    - จัดเรียงข้อมูลเป็น Array
-    - พร้อมป้อนเข้า ML Model
+13. **Create Feature Vector**
+    - Organize data into Array
+    - Ready to input into ML Model
 
 ---
 
-### 🔴 **Phase 5: ML Prediction (การทำนายด้วย AI)**
+### 🔴 **Phase 5: ML Prediction**
 
-14. **โหลด ML Model**
-    - ใช้โมเดลที่ฝึกไว้แล้ว
+14. **Load ML Model**
+    - Use pre-trained model
 
-15. **ทำนายปริมาตร**
-    - ป้อน Feature Vector เข้า Model
-    - ได้ค่าปริมาตรที่ทำนาย (cm³)
+15. **Predict Volume**
+    - Input Feature Vector into Model
+    - Get predicted volume value (cm³)
 
 16. **Post Processing**
-    - ตรวจสอบค่าสมเหตุสมผล
-    - ปัดเศษ แปลงหน่วย
+    - Validate reasonable values
+    - Round numbers, convert units
 
-17. **ตรวจสอบความถูกต้อง**
-    - ✅ ค่าปกติ → แสดงผล
-    - ⚠️ ค่าผิดปกติ → แสดง Warning แต่ยังแสดงผล
-
----
-
-### 🟢 **Phase 6: Output & Save (การแสดงผลและบันทึก)**
-
-18. **แสดงผลลัพธ์**
-    - ปริมาตร (cm³)
-    - ภาพที่ประมวลผลแล้ว
-    - ข้อมูลคุณลักษณะ
-    - Confidence score (ถ้ามี)
-
-19. **ตัวเลือกบันทึก**
-    - ผู้ใช้เลือกว่าจะบันทึกหรือไม่
-
-20. **บันทึกข้อมูล** (ถ้าเลือก)
-    - บันทึกภาพ
-    - บันทึกผลลัพธ์เป็น CSV
-    - บันทึก Timestamp และ Metadata
-
-21. **วัดต่อหรือจบ?**
-    - ✅ วัดต่อ → กลับไปวางส้มลูกใหม่
-    - ❌ จบ → ปิดโปรแกรม
+17. **Check Validity**
+    - ✅ Normal value → Display
+    - ⚠️ Abnormal value → Display Warning but still show results
 
 ---
 
-## ⏱️ เวลาในการประมวลผล (ประมาณการ)
+### 🟢 **Phase 6: Output & Save**
 
-| Step | เวลา (วินาที) |
+18. **Display Results**
+    - Volume (cm³)
+    - Processed images
+    - Feature data
+    - Confidence score (if available)
+
+19. **Save Option**
+    - User chooses whether to save
+
+20. **Save Data** (if selected)
+    - Save images
+    - Save results as CSV
+    - Save Timestamp and Metadata
+
+21. **Continue or End?**
+    - ✅ Continue → Place new orange
+    - ❌ End → Close program
+
+---
+
+## ⏱️ Estimated Processing Time
+
+| Step | Time (seconds) |
 |------|---------------|
 | Capture Image | < 1 |
 | Preprocessing | 0.5 - 1 |
@@ -250,20 +250,20 @@ flowchart TD
 | Feature Extraction | 0.5 - 1 |
 | ML Prediction | < 0.5 |
 | Display Results | < 0.5 |
-| **รวมทั้งหมด** | **~3-6 วินาที/ลูก** |
+| **Total** | **~3-6 seconds/orange** |
 
 ---
 
-## 🔄 การทำงานแบบต่อเนื่อง (Batch Processing)
+## 🔄 Continuous Operation (Batch Processing)
 
-สำหรับการวัดส้มหลายลูกติดต่อกัน:
+For measuring multiple oranges in sequence:
 
 ```
-🍊 ส้มลูกที่ 1 → 📸 ถ่าย → 🔄 ประมวลผล → 🖥️ แสดงผล → 💾 บันทึก
-                                                                    ↓
-🍊 ส้มลูกที่ 2 → 📸 ถ่าย → 🔄 ประมวลผล → 🖥️ แสดงผล → 💾 บันทึก
-                                                                    ↓
-                                  ...และต่อไปเรื่อยๆ
+🍊 Orange #1 → 📸 Capture → 🔄 Process → 🖥️ Display → 💾 Save
+                                                            ↓
+🍊 Orange #2 → 📸 Capture → 🔄 Process → 🖥️ Display → 💾 Save
+                                                            ↓
+                                  ...and so on
 ```
 
 ---
@@ -272,18 +272,18 @@ flowchart TD
 
 | Error Type | Solution |
 |------------|----------|
-| **กล้องไม่พร้อม** | ตรวจสอบการเชื่อมต่อ USB / Driver |
-| **ไม่สามารถแยกวัตถุ** | ปรับตำแหน่งส้ม / ตรวจสอบแสง / ถ่ายใหม่ |
-| **ไม่พบ Marker** | ใช้ Default calibration / แจ้งเตือนผู้ใช้ |
-| **ค่าปริมาตรผิดปกติ** | แสดง Warning / ให้ผู้ใช้ตรวจสอบ |
-| **Model ไม่พบ** | ตรวจสอบไฟล์ model / Retrain |
+| **Camera Not Ready** | Check USB connection / Driver |
+| **Cannot Segment Object** | Adjust orange position / Check lighting / Retry capture |
+| **Marker Not Found** | Use Default calibration / Notify user |
+| **Abnormal Volume Value** | Display Warning / Let user verify |
+| **Model Not Found** | Check model file / Retrain |
 
 ---
 
-## 🎯 จุดเด่นของ Flowchart นี้
+## 🎯 Flowchart Highlights
 
-✅ **ชัดเจน:** แสดงลำดับการทำงานแบบละเอียด  
-✅ **มีการจัดการ Error:** ทุก Decision Point มีทางเลือก  
-✅ **ยืดหยุ่น:** สามารถวัดหลายลูกต่อเนื่อง  
-✅ **เป็นอัตโนมัติ:** หลังถ่ายภาพแล้ว ระบบประมวลผลเอง  
-✅ **รองรับการบันทึก:** สามารถเก็บข้อมูลเพื่อใช้ต่อ
+✅ **Clear:** Shows detailed sequence of operations  
+✅ **Error Management:** Every Decision Point has alternatives  
+✅ **Flexible:** Can measure multiple oranges continuously  
+✅ **Automated:** After image capture, system processes automatically  
+✅ **Supports Saving:** Can store data for future use
