@@ -15,7 +15,7 @@ flowchart TD
     
     WaitCapture{🖱️ User Presses<br/>Capture?}
     
-    CaptureImage[📸 Capture Image<br/>2 Views in Single Frame]
+    CaptureImage[📸 Capture Image<br/>Views in Single Frame]
     
     SaveRaw[💾 Save Raw Image<br/>Raw Image]
     
@@ -105,14 +105,10 @@ flowchart TD
     Continue -->|No| End
     
     %% Styling
-    style Start fill:#81c784
-    style End fill:#e57373
-    style CaptureImage fill:#4fc3f7
-    style Predict fill:#ff8a65
-    style DisplayResults fill:#ffd54f
-    style ErrorWebcam fill:#ef5350
-    style ErrorSegment fill:#ef5350
-    style ErrorPrediction fill:#ffb74d
+    style Start fill:#8c8style End fill:#estyle CaptureImage fill:#fcfstyle Predict fill:#ff8astyle DisplayResults fill:#ffdf
+    style ErrorWebcam fill:#ef0
+    style ErrorSegment fill:#ef0
+    style ErrorPrediction fill:#ffbd
     style CheckWebcam fill:#90caf9
     style CheckSegment fill:#90caf9
     style CheckMarker fill:#90caf9
@@ -123,44 +119,44 @@ flowchart TD
 
 ## 📖 Flowchart Explanation
 
-### 🟢 **Phase 1: Initialization**
+### 🟢 **Phase : Initialization**
 
-1. **Start System**
+. **Start System**
    - Launch DVOR program
    - Connect Webcam
    - Load pre-trained Machine Learning Model
    - Check equipment
 
-2. **Check Webcam**
+. **Check Webcam**
    - ✅ If ready → Continue
    - ❌ If not ready → Display Error and end
 
 ---
 
-### 🔵 **Phase 2: Image Capture**
+### 🔵 **Phase : Image Capture**
 
-3. **System Ready**
+. **System Ready**
    - Display GUI interface, waiting for user
 
-4. **Place Orange**
+. **Place Orange**
    - User places orange on capture platform
    - Adjust position to be within Webcam view
 
-5. **Wait for Capture Command**
+. **Wait for Capture Command**
    - User presses "Capture" button
 
-6. **Capture Image**
+. **Capture Image**
    - Capture from Webcam in a single frame
-   - Gets 2 views simultaneously:
+   - Gets views simultaneously:
      • Top View: Direct overhead view of orange
      • Side View: Side reflection from mirror
    - Save raw image (Raw Image)
 
 ---
 
-### 🟡 **Phase 3: Image Processing**
+### 🟡 **Phase : Image Processing**
 
-7. **Preprocessing**
+. **Preprocessing**
    - Adjust brightness, sharpness
    - Reduce noise
    - Separate Top View and Side View images
@@ -174,67 +170,67 @@ flowchart TD
    - ✅ Success → Continue
    - ❌ Failure → Display Error, retry capture
 
-10. **Detect Marker**
+0. **Detect Marker**
     - Find Reference object for scale calibration
     - ✅ Found → Use to calculate Pixel/mm
     - ❌ Not found → Use Default value
 
-11. **Scale Calibration**
+. **Scale Calibration**
     - Convert Pixel values → mm/cm
 
 ---
 
-### 🟣 **Phase 4: Feature Extraction**
+### 🟣 **Phase : Feature Extraction**
 
-12. **Extract Features**
+. **Extract Features**
     - Measure Diameter
     - Measure Height
     - Calculate Area
     - Calculate Roundness
     - Calculate Aspect Ratio
 
-13. **Create Feature Vector**
+. **Create Feature Vector**
     - Organize data into Array
     - Ready to input into ML Model
 
 ---
 
-### 🔴 **Phase 5: ML Prediction**
+### 🔴 **Phase : ML Prediction**
 
-14. **Load ML Model**
+. **Load ML Model**
     - Use pre-trained model
 
-15. **Predict Volume**
+. **Predict Volume**
     - Input Feature Vector into Model
     - Get predicted volume value (cm³)
 
-16. **Post Processing**
+. **Post Processing**
     - Validate reasonable values
     - Round numbers, convert units
 
-17. **Check Validity**
+. **Check Validity**
     - ✅ Normal value → Display
     - ⚠️ Abnormal value → Display Warning but still show results
 
 ---
 
-### 🟢 **Phase 6: Output & Save**
+### 🟢 **Phase : Output & Save**
 
-18. **Display Results**
+8. **Display Results**
     - Volume (cm³)
     - Processed images
     - Feature data
     - Confidence score (if available)
 
-19. **Save Option**
+9. **Save Option**
     - User chooses whether to save
 
-20. **Save Data** (if selected)
+0. **Save Data** (if selected)
     - Save images
     - Save results as CSV
     - Save Timestamp and Metadata
 
-21. **Continue or End?**
+. **Continue or End?**
     - ✅ Continue → Place new orange
     - ❌ End → Close program
 
@@ -244,13 +240,13 @@ flowchart TD
 
 | Step | Time (seconds) |
 |------|---------------|
-| Capture Image | < 1 |
-| Preprocessing | 0.5 - 1 |
-| Segmentation | 1 - 2 |
-| Feature Extraction | 0.5 - 1 |
-| ML Prediction | < 0.5 |
-| Display Results | < 0.5 |
-| **Total** | **~3-6 seconds/orange** |
+| Capture Image | < |
+| Preprocessing | 0.- |
+| Segmentation | - |
+| Feature Extraction | 0.- |
+| ML Prediction | < 0.|
+| Display Results | < 0.|
+| **Total** | **~-seconds/orange** |
 
 ---
 
@@ -259,9 +255,9 @@ flowchart TD
 For measuring multiple oranges in sequence:
 
 ```
-🍊 Orange #1 → 📸 Capture → 🔄 Process → 🖥️ Display → 💾 Save
+🍊 Orange #→ 📸 Capture → 🔄 Process → 🖥️ Display → 💾 Save
                                                             ↓
-🍊 Orange #2 → 📸 Capture → 🔄 Process → 🖥️ Display → 💾 Save
+🍊 Orange #→ 📸 Capture → 🔄 Process → 🖥️ Display → 💾 Save
                                                             ↓
                                   ...and so on
 ```

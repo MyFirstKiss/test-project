@@ -2,47 +2,47 @@
 
 ```mermaid
 graph TD
-    subgraph Row1[" "]
+    subgraph Row[" "]
         direction LR
-        subgraph "1️⃣ Input Layer"
+        subgraph "️⃣ Input Layer"
             Webcam[📷 Webcam<br/>Single Webcam]
             Mirror[🪞 Mirror<br/>Angled Position]
             Light[💡 Lighting<br/>Controlled Lighting]
         end
         
-        subgraph "2️⃣ Image Acquisition"
+        subgraph "️⃣ Image Acquisition"
             Capture[📸 Image Capture Module<br/>Captures both views in single frame]
             RawImage[(🖼️ Raw Image<br/>RGB Image)]
         end
     end
     
-    subgraph Row2[" "]
+    subgraph Row[" "]
         direction LR
-        subgraph "3️⃣ Image Processing"
+        subgraph "️⃣ Image Processing"
             Preprocessing[🔧 Image Preprocessing<br/>- Adjust brightness/contrast<br/>- Noise reduction<br/>- Separate Top/Side View]
             Segmentation[✂️ Object Segmentation<br/>- Separate orange from background<br/>- Detect Marker<br/>- Binary Masking]
             Calibration[📏 Scale Calibration<br/>- Detect Marker<br/>- Convert Pixel → mm/cm]
         end
         
-        subgraph "4️⃣ Feature Extraction"
+        subgraph "️⃣ Feature Extraction"
             GeometricFE[📐 Geometric Feature<br/>Extraction<br/>- Diameter<br/>- Height<br/>- Cross-sectional Area<br/>- Roundness]
             FeatureVector[(📊 Feature Vector<br/>Feature Data Set)]
         end
     end
     
-    subgraph Row3[" "]
+    subgraph Row[" "]
         direction LR
-        subgraph "5️⃣ AI/ML Module"
+        subgraph "️⃣ AI/ML Module"
             MLModel[🤖 Machine Learning Model<br/>- Training in Progress<br/>- Trained Model]
             Prediction[🎯 Volume Prediction<br/>Predict Volume]
         end
         
-        subgraph "6️⃣ Output Layer"
+        subgraph "️⃣ Output Layer"
             Display[🖥️ Display Results<br/>- Volume value cm³<br/>- Processed images<br/>- All features]
             Storage[(💾 Data Storage<br/>- Save images<br/>- Save results<br/>- Log data)]
         end
         
-        subgraph "7️⃣ User Interface"
+        subgraph "️⃣ User Interface"
             GUI[🖱️ GUI Application<br/>- Capture button<br/>- Real-time display<br/>- Save/Export]
         end
     end
@@ -72,38 +72,34 @@ graph TD
     Storage -.->|Retrieve| GUI
     
     %% Styling
-    style Webcam fill:#4fc3f7
-    style Mirror fill:#b39ddb
-    style MLModel fill:#ff8a65
-    style Prediction fill:#ffb74d
-    style Display fill:#81c784
-    style GUI fill:#fff176
-```
+    style Webcam fill:#fcfstyle Mirror fill:#b9ddb
+    style MLModel fill:#ff8astyle Prediction fill:#ffbd
+    style Display fill:#8c8style GUI fill:#fff```
 
 ---
 
 ## 📋 Layer Details
 
-### 1️⃣ **Input Layer**
+### ️⃣ **Input Layer**
 
 | Component | Function | Technology |
 |-----------|----------|------------|
-| **Webcam** | Captures orange in both Top View (direct) and Side View (reflected) in single frame | RGB Webcam (≥5MP) |
+| **Webcam** | Captures orange in both Top View (direct) and Side View (reflected) in single frame | RGB Webcam (≥MP) |
 | **Mirror** | Reflects side view of orange, positioned at appropriate angle | High-quality smooth mirror |
 | **Lighting** | Provides consistent illumination | LED White Light |
 
 ---
 
-### 2️⃣ **Image Acquisition**
+### ️⃣ **Image Acquisition**
 
 - **Image Capture Module**
-  - Captures 2 views in a single frame
+  - Captures views in a single frame
   - Saves as RGB file (JPG/PNG)
   - High resolution for accuracy
 
 ---
 
-### 3️⃣ **Image Processing**
+### ️⃣ **Image Processing**
 
 #### a) **Image Preprocessing**
 ```
@@ -113,7 +109,7 @@ Process:
   - Noise reduction (Gaussian Blur, Median Filter)
   - Contrast enhancement
   - Separate Top View and Side View from single frame
-Output: Processed Images (2 views)
+Output: Processed Images (views)
 ```
 
 #### b) **Object Segmentation**
@@ -140,32 +136,32 @@ Output: Calibration ratio (px/mm)
 
 ---
 
-### 4️⃣ **Feature Extraction**
+### ️⃣ **Feature Extraction**
 
 #### Geometric Features:
-1. **Diameter**
+. **Diameter**
    - Measured from Top View (D_top)
    - Measured from Side View (D_side)
 
-2. **Height**
+. **Height**
    - Measured from Side View
 
-3. **Cross-sectional Area**
+. **Cross-sectional Area**
    - Calculated from Top View
-   - A = π × (D_top/2)²
+   - A = π × (D_top/)²
 
-4. **Roundness/Circularity**
-   - R = 4π × Area / Perimeter²
+. **Roundness/Circularity**
+   - R = π × Area / Perimeter²
    - Used to assess asymmetry
 
-5. **Aspect Ratio**
+. **Aspect Ratio**
    - Height / Diameter
 
 **Output:** Feature Vector = [D_top, D_side, Height, Area, Roundness, Aspect_Ratio, ...]
 
 ---
 
-### 5️⃣ **AI/ML Module**
+### ️⃣ **AI/ML Module**
 
 #### Machine Learning Pipeline:
 
@@ -181,18 +177,18 @@ Output: Predicted Volume (cm³)
 
 #### Training Process:
 ```
-1. Collect data: Orange images + actual volume measurement (Water displacement)
-2. Extract Features from images
-3. Split data: Train/Validation/Test set
-4. Train multiple Models
-5. Select best Model
-6. Optimize hyperparameters
-7. Deploy model
+. Collect data: Orange images + actual volume measurement (Water displacement)
+. Extract Features from images
+. Split data: Train/Validation/Test set
+. Train multiple Models
+. Select best Model
+. Optimize hyperparameters
+. Deploy model
 ```
 
 ---
 
-### 6️⃣ **Output Layer**
+### ️⃣ **Output Layer**
 
 #### Display Results:
 - **Volume Value:** Displayed in cm³ or ml
@@ -208,7 +204,7 @@ Output: Predicted Volume (cm³)
 
 ---
 
-### 7️⃣ **User Interface**
+### ️⃣ **User Interface**
 
 #### GUI Features:
 - **Preview Window:** Shows real-time Webcam feed
@@ -235,7 +231,7 @@ Output: Predicted Volume (cm³)
 ## 📊 Data Flow Summary
 
 ```
-🍊 Orange → 📷 Webcam+🪞Mirror → 🖼️ Raw Image (2 views) → 
+🍊 Orange → 📷 Webcam+🪞Mirror → 🖼️ Raw Image (views) → 
 🔧 Image Processing → ✂️ Segmentation → 📏 Scale Calibration → 
 📐 Feature Extraction → 🤖 AI Model → 🎯 Volume → 
 🖥️ Display → 💾 Save Data
@@ -246,14 +242,14 @@ Output: Predicted Volume (cm³)
 ## ⚙️ System Requirements
 
 ### Hardware:
-- ✅ RGB Webcam (5MP or higher)
+- ✅ RGB Webcam (MP or higher)
 - ✅ Smooth mirror
 - ✅ LED lighting system
-- ✅ Computer (CPU: i5 or better, RAM: 8GB or more)
+- ✅ Computer (CPU: ior better, RAM: 8GB or more)
 
 ### Software:
-- ✅ Python 3.8+
-- ✅ OpenCV 4.x
+- ✅ Python .8+
+- ✅ OpenCV .x
 - ✅ scikit-learn / TensorFlow
 - ✅ NumPy, Pandas
 - ✅ GUI Framework
