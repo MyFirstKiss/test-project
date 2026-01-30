@@ -1,7 +1,7 @@
 # DVOR - System Architecture
 
 ```mermaid
-graph TB
+graph LR
     subgraph "1️⃣ Input Layer"
         Webcam[📷 Webcam<br/>Single Webcam]
         Mirror[🪞 Mirror<br/>Angled Position]
