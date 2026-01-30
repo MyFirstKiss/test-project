@@ -4,7 +4,7 @@
 flowchart TD
     Start([🚀 Start DVOR System])
     
-    Init[🔧 Initialize System<br/>- Launch program<br/>- Connect Webcam<br/>- Load ML Model]
+    Init[🔧 Initialize System<br/>Launch, Connect Webcam, Load Model]
     
     CheckWebcam{📷 Webcam<br/>Ready?}
     ErrorWebcam[❌ Display Error<br/>Webcam not ready]
@@ -15,17 +15,17 @@ flowchart TD
     
     WaitCapture{🖱️ User Presses<br/>Capture?}
     
-    CaptureImage[📸 Capture Image<br/>Captures 2 views<br/>in single frame]
+    CaptureImage[📸 Capture Image<br/>2 Views in Single Frame]
     
     SaveRaw[💾 Save Raw Image<br/>Raw Image]
     
     %% Image Processing
-    Preprocess[🔧 Image Preprocessing<br/>- Adjust brightness/contrast<br/>- Noise reduction<br/>- Separate Top/Side View]
+    Preprocess[🔧 Image Preprocessing<br/>Adjust, Reduce Noise, Separate Views]
     
-    Segment[✂️ Object Segmentation<br/>- Separate orange from background<br/>- Background Subtraction<br/>- Binary Masking]
+    Segment[✂️ Object Segmentation<br/>Separate Orange & Binary Mask]
     
     CheckSegment{✅ Segmentation<br/>Successful?}
-    ErrorSegment[❌ Error<br/>Object not found<br/>or image unclear]
+    ErrorSegment[❌ Error<br/>Object Not Found or Unclear]
     
     DetectMarker[📏 Detect Marker<br/>Detect Reference Object]
     
@@ -34,26 +34,26 @@ flowchart TD
     
     Calibrate[📐 Scale Calibration<br/>Calculate Pixel/mm ratio]
     
-    ExtractFeatures[📊 Feature Extraction<br/>Extract features:<br/>- Diameter (Top/Side)<br/>- Height<br/>- Area<br/>- Roundness<br/>- Aspect Ratio]
+    ExtractFeatures[📊 Feature Extraction<br/>Diameter, Height, Area, Roundness]
     
-    CreateVector[📈 Create Feature Vector<br/>Create Input data<br/>for ML Model]
+    CreateVector[📈 Create Feature Vector<br/>Input Data for ML Model]
     
     %% ML Prediction
     LoadModel[🤖 Load ML Model<br/>Load trained model]
     
-    Predict[🎯 Volume Prediction<br/>Predict volume using<br/>ML Model]
+    Predict[🎯 Volume Prediction<br/>Using ML Model]
     
-    PostProcess[📝 Post Processing<br/>- Validate reasonable values<br/>- Round numbers<br/>- Convert units]
+    PostProcess[📝 Post Processing<br/>Validate & Convert Units]
     
     CheckValid{✅ Volume value<br/>Reasonable?}
-    ErrorPrediction[❌ Warning<br/>Abnormal value<br/>Check orange or image]
+    ErrorPrediction[❌ Warning<br/>Abnormal Value Detected]
     
     %% Output
-    DisplayResults[🖥️ Display Results<br/>Display:<br/>- Volume V cm³<br/>- Processed images<br/>- All features<br/>- Confidence Score]
+    DisplayResults[🖥️ Display Results<br/>Volume, Images, Features, Confidence]
     
     SaveOption{💾 Save<br/>Results?}
     
-    SaveData[💿 Save Data<br/>- Save images<br/>- Save results CSV<br/>- Timestamp<br/>- Log data]
+    SaveData[💿 Save Data<br/>Images, CSV, Timestamp, Logs]
     
     Continue{🔄 Measure<br/>Next Orange?}
     
