@@ -35,12 +35,12 @@ graph TD
 
 ### 🔵 Use Case 1: Initialize System
 - **Actor:** Operator
-- **Description:** Start the DVOR program and verify camera and system readiness
+- **Description:** Start the DVOR program and verify Webcam and system readiness
 - **Precondition:** Hardware system is ready for operation
 
 ### 🔵 Use Case 2: Place Orange
 - **Actor:** Operator
-- **Description:** Position the orange at the designated spot within the camera and mirror's field of view
+- **Description:** Position the orange at the designated spot within the Webcam and mirror's field of view
 - **Precondition:** System is initialized
 
 ### 🔵 Use Case 3: Capture Image

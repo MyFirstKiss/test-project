@@ -3,7 +3,7 @@
 ```mermaid
 graph TB
     subgraph "1️⃣ Input Layer"
-        Camera[📷 Camera<br/>Single Camera]
+        Webcam[📷 Webcam<br/>Single Webcam]
         Mirror[🪞 Mirror<br/>Angled Position]
         Light[💡 Lighting<br/>Controlled Lighting]
     end
@@ -39,9 +39,9 @@ graph TB
     end
     
     %% Connections
-    Camera -->|Direct top view of orange| Capture
-    Mirror -->|Reflected side view| Camera
-    Light --> Camera
+    Webcam -->|Direct top view of orange| Capture
+    Mirror -->|Reflected side view| Webcam
+    Light --> Webcam
     
     Capture --> RawImage
     RawImage --> Preprocessing
@@ -63,7 +63,7 @@ graph TB
     Storage -.->|Retrieve| GUI
     
     %% Styling
-    style Camera fill:#4fc3f7
+    style Webcam fill:#4fc3f7
     style Mirror fill:#b39ddb
     style MLModel fill:#ff8a65
     style Prediction fill:#ffb74d
@@ -79,7 +79,7 @@ graph TB
 
 | Component | Function | Technology |
 |-----------|----------|------------|
-| **Camera** | Captures orange in both Top View (direct) and Side View (reflected) in single frame | RGB Camera (≥5MP) |
+| **Webcam** | Captures orange in both Top View (direct) and Side View (reflected) in single frame | RGB Webcam (≥5MP) |
 | **Mirror** | Reflects side view of orange, positioned at appropriate angle | High-quality smooth mirror |
 | **Lighting** | Provides consistent illumination | LED White Light |
 
@@ -202,7 +202,7 @@ Output: Predicted Volume (cm³)
 ### 7️⃣ **User Interface**
 
 #### GUI Features:
-- **Preview Window:** Shows real-time camera feed
+- **Preview Window:** Shows real-time Webcam feed
 - **Capture Button:** Button to photograph and start processing
 - **Results Panel:** Display measurement results
 - **Save/Export:** Save data to file
@@ -226,7 +226,7 @@ Output: Predicted Volume (cm³)
 ## 📊 Data Flow Summary
 
 ```
-🍊 Orange → 📷 Camera+🪞Mirror → 🖼️ Raw Image (2 views) → 
+🍊 Orange → 📷 Webcam+🪞Mirror → 🖼️ Raw Image (2 views) → 
 🔧 Image Processing → ✂️ Segmentation → 📏 Scale Calibration → 
 📐 Feature Extraction → 🤖 AI Model → 🎯 Volume → 
 🖥️ Display → 💾 Save Data
@@ -237,7 +237,7 @@ Output: Predicted Volume (cm³)
 ## ⚙️ System Requirements
 
 ### Hardware:
-- ✅ RGB Camera (5MP or higher)
+- ✅ RGB Webcam (5MP or higher)
 - ✅ Smooth mirror
 - ✅ LED lighting system
 - ✅ Computer (CPU: i5 or better, RAM: 8GB or more)
@@ -255,6 +255,6 @@ Output: Predicted Volume (cm³)
 
 ✅ **Modular Design:** Each module is clearly separated, easy to develop and modify  
 ✅ **Scalable:** Can add features or improve model easily  
-✅ **Cost-effective:** Uses single camera, reducing costs  
+✅ **Cost-effective:** Uses single Webcam, reducing costs  
 ✅ **Automated:** Processes automatically after image capture  
 ✅ **Non-destructive:** Does not damage the orange sample

@@ -3,22 +3,22 @@
 ```mermaid
 graph TB
     subgraph "DVOR Hardware Layout"
-        Camera[📷 Camera<br/>Mounted Above<br/>Looking Downward Vertically]
+        Webcam[📷 Webcam<br/>Mounted Above<br/>Looking Downward Vertically]
         Mirror[🪞 Mirror<br/>Positioned at Angle<br/>On the Side]
         Platform[📦 Platform<br/>Solid Background Color]
         Marker[📏 Marker<br/>Size Reference Object]
         Light[💡 Lighting<br/>Constant Illumination]
         Orange[🍊 Orange]
         
-        Camera -->|Direct Top View| Orange
-        Camera -->|Reflected View| Mirror
+        Webcam -->|Direct Top View| Orange
+        Webcam -->|Reflected View| Mirror
         Mirror -->|Side Reflection| Orange
         Orange -->|Placed On| Platform
         Marker -->|Adjacent To| Orange
         Light -->|Illuminates| Orange
     end
     
-    style Camera fill:#4fc3f7
+    style Webcam fill:#4fc3f7
     style Mirror fill:#b39ddb
     style Platform fill:#aed581
     style Marker fill:#ffb74d
@@ -28,10 +28,10 @@ graph TB
 
 ## 📐 Installation Details
 
-### 1. **Camera**
+### 1. **Webcam**
 - **Position:** Mounted centrally above, looking downward vertically
 - **Distance:** Adjusted to capture both the orange and mirror reflection in a single frame
-- **Specification:** High-resolution RGB camera (recommended ≥ 5MP)
+- **Specification:** High-resolution RGB Webcam (recommended ≥ 5MP)
 - **Function:** Captures 2 views in one frame
   - Top View: Direct overhead view of the orange
   - Side View: Side view via mirror reflection
@@ -42,7 +42,7 @@ graph TB
 - **Position:** Placed beside the platform, at a suitable distance from the orange
 - **Material:** Smooth, high-quality mirror that doesn't distort the image
 - **Adjustment:** Angle can be adjusted to achieve the clearest reflection
-- **Purpose:** Enables side view capture without requiring a second camera, reducing hardware costs
+- **Purpose:** Enables side view capture without requiring a second Webcam, reducing hardware costs
 
 ### 3. **Platform**
 - **Color:** Solid background color (recommended: white or gray, contrasting with orange)
@@ -52,7 +52,7 @@ graph TB
 
 ### 4. **Marker (Size Reference Object)**
 - **Format:** Object with known precise dimensions, e.g., 2×2 cm square block
-- **Position:** Placed near the orange within the camera's field of view
+- **Position:** Placed near the orange within the Webcam's field of view
 - **Color:** Different from both orange and background for easy detection
 - **Purpose:** Used for scale calibration - converting pixels to real units (mm/cm)
 
@@ -68,7 +68,7 @@ graph TB
 
 ### Image Capture Mechanism:
 ```
-         📷 Camera (Mounted Above)
+         📷 Webcam (Mounted Above)
               │
               │ Optical Path
               ├───────────┐
@@ -81,7 +81,7 @@ graph TB
 ### Result in Single Frame:
 ```
 ┌────────────────────────────────────────────┐
-│         📷 Camera                          │
+│         📷 Webcam                          │
 │      (Looking Downward)                    │
 └────────────┬───────────────────────────────┘
              │
@@ -105,8 +105,8 @@ graph TB
 
 ## 🎯 Advantages of This Design
 
-✅ **Cost-Effective:** Uses only one camera instead of two  
-✅ **Simple:** No need to synchronize multiple cameras  
+✅ **Cost-Effective:** Uses only one Webcam instead of two  
+✅ **Simple:** No need to synchronize multiple Webcams  
 ✅ **Complete Data:** Captures both top and side views in a single frame  
 ✅ **Easy Installation:** Uses readily available components  
 ✅ **Accurate:** Scale calibration via Marker enables precise measurements
@@ -121,8 +121,8 @@ graph TB
 ⚠️ **Mirror Angle:** Must be properly adjusted to achieve the clearest, undistorted side view within the frame  
 ⚠️ **Glare:** Manage lighting to avoid excessive reflection from the mirror surface; consider anti-glare coating  
 ⚠️ **Orange Position:** Must be placed consistently in the designated location for uniform image quality  
-⚠️ **Distance:** Maintain consistent distances between camera, mirror, and orange for data uniformity  
-⚠️ **Vibration:** Avoid camera or mirror movement during image capture; use stable mounting
+⚠️ **Distance:** Maintain consistent distances between Webcam, mirror, and orange for data uniformity  
+⚠️ **Vibration:** Avoid Webcam or mirror movement during image capture; use stable mounting
 
 ### 💡 Installation Tips:
 

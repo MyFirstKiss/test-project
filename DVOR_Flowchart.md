@@ -4,10 +4,10 @@
 flowchart TD
     Start([🚀 Start DVOR System])
     
-    Init[🔧 Initialize System<br/>- Launch program<br/>- Connect camera<br/>- Load ML Model]
+    Init[🔧 Initialize System<br/>- Launch program<br/>- Connect Webcam<br/>- Load ML Model]
     
-    CheckCamera{📷 Camera<br/>Ready?}
-    ErrorCamera[❌ Display Error<br/>Camera not ready]
+    CheckWebcam{📷 Webcam<br/>Ready?}
+    ErrorWebcam[❌ Display Error<br/>Webcam not ready]
     
     Ready[✅ System Ready<br/>Waiting for orange placement]
     
@@ -61,10 +61,10 @@ flowchart TD
     
     %% Connections
     Start --> Init
-    Init --> CheckCamera
-    CheckCamera -->|No| ErrorCamera
-    ErrorCamera --> End
-    CheckCamera -->|Yes| Ready
+    Init --> CheckWebcam
+    CheckWebcam -->|No| ErrorWebcam
+    ErrorWebcam --> End
+    CheckWebcam -->|Yes| Ready
     
     Ready --> PlaceOrange
     PlaceOrange --> WaitCapture
@@ -110,10 +110,10 @@ flowchart TD
     style CaptureImage fill:#4fc3f7
     style Predict fill:#ff8a65
     style DisplayResults fill:#ffd54f
-    style ErrorCamera fill:#ef5350
+    style ErrorWebcam fill:#ef5350
     style ErrorSegment fill:#ef5350
     style ErrorPrediction fill:#ffb74d
-    style CheckCamera fill:#90caf9
+    style CheckWebcam fill:#90caf9
     style CheckSegment fill:#90caf9
     style CheckMarker fill:#90caf9
     style CheckValid fill:#90caf9
@@ -127,11 +127,11 @@ flowchart TD
 
 1. **Start System**
    - Launch DVOR program
-   - Connect camera
+   - Connect Webcam
    - Load pre-trained Machine Learning Model
    - Check equipment
 
-2. **Check Camera**
+2. **Check Webcam**
    - ✅ If ready → Continue
    - ❌ If not ready → Display Error and end
 
@@ -144,13 +144,13 @@ flowchart TD
 
 4. **Place Orange**
    - User places orange on capture platform
-   - Adjust position to be within camera view
+   - Adjust position to be within Webcam view
 
 5. **Wait for Capture Command**
    - User presses "Capture" button
 
 6. **Capture Image**
-   - Capture from camera in a single frame
+   - Capture from Webcam in a single frame
    - Gets 2 views simultaneously:
      • Top View: Direct overhead view of orange
      • Side View: Side reflection from mirror
@@ -272,7 +272,7 @@ For measuring multiple oranges in sequence:
 
 | Error Type | Solution |
 |------------|----------|
-| **Camera Not Ready** | Check USB connection / Driver |
+| **Webcam Not Ready** | Check USB connection / Driver |
 | **Cannot Segment Object** | Adjust orange position / Check lighting / Retry capture |
 | **Marker Not Found** | Use Default calibration / Notify user |
 | **Abnormal Volume Value** | Display Warning / Let user verify |
