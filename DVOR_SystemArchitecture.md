@@ -1,41 +1,50 @@
 # DVOR - System Architecture
 
 ```mermaid
-graph LR
-    subgraph "1️⃣ Input Layer"
-        Webcam[📷 Webcam<br/>Single Webcam]
-        Mirror[🪞 Mirror<br/>Angled Position]
-        Light[💡 Lighting<br/>Controlled Lighting]
+graph TD
+    subgraph Row1[" "]
+        direction LR
+        subgraph "1️⃣ Input Layer"
+            Webcam[📷 Webcam<br/>Single Webcam]
+            Mirror[🪞 Mirror<br/>Angled Position]
+            Light[💡 Lighting<br/>Controlled Lighting]
+        end
+        
+        subgraph "2️⃣ Image Acquisition"
+            Capture[📸 Image Capture Module<br/>Captures both views in single frame]
+            RawImage[(🖼️ Raw Image<br/>RGB Image)]
+        end
     end
     
-    subgraph "2️⃣ Image Acquisition"
-        Capture[📸 Image Capture Module<br/>Captures both views in single frame]
-        RawImage[(🖼️ Raw Image<br/>RGB Image)]
+    subgraph Row2[" "]
+        direction LR
+        subgraph "3️⃣ Image Processing"
+            Preprocessing[🔧 Image Preprocessing<br/>- Adjust brightness/contrast<br/>- Noise reduction<br/>- Separate Top/Side View]
+            Segmentation[✂️ Object Segmentation<br/>- Separate orange from background<br/>- Detect Marker<br/>- Binary Masking]
+            Calibration[📏 Scale Calibration<br/>- Detect Marker<br/>- Convert Pixel → mm/cm]
+        end
+        
+        subgraph "4️⃣ Feature Extraction"
+            GeometricFE[📐 Geometric Feature<br/>Extraction<br/>- Diameter<br/>- Height<br/>- Cross-sectional Area<br/>- Roundness]
+            FeatureVector[(📊 Feature Vector<br/>Feature Data Set)]
+        end
     end
     
-    subgraph "3️⃣ Image Processing"
-        Preprocessing[🔧 Image Preprocessing<br/>- Adjust brightness/contrast<br/>- Noise reduction<br/>- Separate Top/Side View]
-        Segmentation[✂️ Object Segmentation<br/>- Separate orange from background<br/>- Detect Marker<br/>- Binary Masking]
-        Calibration[📏 Scale Calibration<br/>- Detect Marker<br/>- Convert Pixel → mm/cm]
-    end
-    
-    subgraph "4️⃣ Feature Extraction"
-        GeometricFE[📐 Geometric Feature<br/>Extraction<br/>- Diameter<br/>- Height<br/>- Cross-sectional Area<br/>- Roundness]
-        FeatureVector[(📊 Feature Vector<br/>Feature Data Set)]
-    end
-    
-    subgraph "5️⃣ AI/ML Module"
-        MLModel[🤖 Machine Learning Model<br/>- Training in Progress<br/>- Trained Model]
-        Prediction[🎯 Volume Prediction<br/>Predict Volume]
-    end
-    
-    subgraph "6️⃣ Output Layer"
-        Display[🖥️ Display Results<br/>- Volume value cm³<br/>- Processed images<br/>- All features]
-        Storage[(💾 Data Storage<br/>- Save images<br/>- Save results<br/>- Log data)]
-    end
-    
-    subgraph "7️⃣ User Interface"
-        GUI[🖱️ GUI Application<br/>- Capture button<br/>- Real-time display<br/>- Save/Export]
+    subgraph Row3[" "]
+        direction LR
+        subgraph "5️⃣ AI/ML Module"
+            MLModel[🤖 Machine Learning Model<br/>- Training in Progress<br/>- Trained Model]
+            Prediction[🎯 Volume Prediction<br/>Predict Volume]
+        end
+        
+        subgraph "6️⃣ Output Layer"
+            Display[🖥️ Display Results<br/>- Volume value cm³<br/>- Processed images<br/>- All features]
+            Storage[(💾 Data Storage<br/>- Save images<br/>- Save results<br/>- Log data)]
+        end
+        
+        subgraph "7️⃣ User Interface"
+            GUI[🖱️ GUI Application<br/>- Capture button<br/>- Real-time display<br/>- Save/Export]
+        end
     end
     
     %% Connections
