@@ -1,7 +1,7 @@
 # DVOR - System Flowchart
 
 ```mermaid
-flowchart TD
+flowchart LR
     Start([🚀 Start DVOR System])
     
     Init[🔧 Initialize System<br/>Launch, Connect Webcam, Load Model]
