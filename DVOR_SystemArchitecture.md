@@ -85,7 +85,9 @@ graph TB
     class MLModel,Prediction aiStyle
     class Display,Storage outputStyle
     class GUI uiStyle
-```---
+```
+
+---
 
 ## 📋 Layer Details
 
